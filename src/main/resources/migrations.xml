@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet id="project" author="Denis">
+        <createTable tableName="project">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(128)"/>
+            <column name="start" type="date"/>
+            <column name="deadline" type="datetime"/>
+            <column name="estimate" type="integer"/>
+            <column name="status" type="varchar(32)"/>
+
+            <column name="created_on" type="datetime"/>
+            <column name="created_by" type="varchar(128)"/>
+            <column name="last_update" type="datetime"/>
+            <column name="last_changed_by" type="varchar(128)"/>
+            <column name="deleted" type="boolean"
+                    defaultValueBoolean="false"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="person" author="Denis">
+        <createTable tableName="person">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(128)"/>
+            <column name="last_name" type="varchar(128)"/>
+
+            <column name="last_update" type="datetime"/>
+        </createTable>
+        <createTable tableName="project_person">
+            <column name="project_id" type="bigint(20)">
+                <constraints foreignKeyName="project_person_fk" referencedTableName="project"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="person_id" type="bigint(20)">
+                <constraints foreignKeyName="person_project_fk" referencedTableName="person"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="user" author="Denis">
+        <createTable tableName="user">
+            <column name="id" type="bigint(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar(128)"/>
+            <column name="username" type="varchar(200)"/>
+            <column name="password" type="varchar(200)"/>
+        </createTable>
+       </changeSet>
+</databaseChangeLog>

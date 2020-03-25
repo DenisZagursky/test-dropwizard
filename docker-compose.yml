@@ -1,0 +1,27 @@
+version: '3.7'
+
+networks:
+  network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+
+services:
+  mysql:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local-mysql
+      args:
+        IMAGE: mysql:5.7.14
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=test_database
+      - MYSQL_USER=test_user
+      - MYSQL_PASSWORD=12345678
+    ports:
+      - 3336:3306
+    networks:
+      - network

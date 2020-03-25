@@ -1,0 +1,10 @@
+ARG IMAGE
+FROM $IMAGE
+LABEL maintainer="Denis Sventitsky <denis.sventitsky@gmail.com>"
+
+EXPOSE 3306
+
+COPY mysql.cnf /etc/mysql/conf.d/mysql.cnf
+RUN chmod 664 /etc/mysql/conf.d/mysql.cnf
+
+CMD ["mysqld"]

@@ -1,0 +1,36 @@
+logging:
+  level: INFO
+  loggers:
+    test-formular: DEBUG
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: test_user
+  password: 12345678
+  url: jdbc:mysql://localhost:3336/test_database
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+    hibernate.generate_statistics: false
+    hibernate.session.events.log: false
+    hibernate.show_sql: true
+    hibernate.format_sql: true
+    hibernate.jdbc.batch_size property: 20
+    maxWaitForConnection: 1s
+    validationQuery: "SELECT 1"
+    hibernate.hbm2ddl.auto: validate
+    minSize: 3
+    maxSize: 32
+    checkConnectionWhileIdle: false
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+jwtCookieAuth:
+  secretSeed: null
+  secure: false
+  httpOnly: true
+  sameSite: null
+  sessionExpiryVolatile: PT30m
+  sessionExpiryPersistent: P7d
+swagger:
+  resourcePackage: com.wizard.formular.web

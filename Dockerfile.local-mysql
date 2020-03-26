@@ -1,6 +1,6 @@
 ARG IMAGE
 FROM $IMAGE
-LABEL maintainer="Denis Sventitsky <denis.sventitsky@gmail.com>"
+LABEL maintainer="denis.zagursky@gmail.com"
 
 EXPOSE 3306
 

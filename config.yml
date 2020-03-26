@@ -6,7 +6,7 @@ database:
   driverClass: com.mysql.jdbc.Driver
   user: test_user
   password: 12345678
-  url: jdbc:mysql://localhost:3336/test_database
+  url: jdbc:mysql://localhost:3336/test_database?useSSL=false
   properties:
     charSet: UTF-8
     hibernate.dialect: org.hibernate.dialect.MySQLDialect
@@ -32,5 +32,3 @@ jwtCookieAuth:
   sameSite: null
   sessionExpiryVolatile: PT30m
   sessionExpiryPersistent: P7d
-swagger:
-  resourcePackage: com.wizard.formular.web

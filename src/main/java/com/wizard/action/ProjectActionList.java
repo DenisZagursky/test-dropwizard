@@ -13,18 +13,19 @@ import static org.jooq.codegen.maven.example.tables.Project.PROJECT;
 @Slf4j
 public class ProjectActionList {
 
-    public Page<ShortProjectResponse> getProjectsByFilter(ProjectFilterRequest filter, Pageable pageable, DSLContext db) {
+    public Page getProjectsByFilter(ProjectFilterRequest filter, Pageable pageable, DSLContext db) {
         var defaultSql = db.selectFrom(PROJECT)
                 .where(PROJECT.DELETED.isFalse());
+        var condition = PROJECT.DELETED.isFalse();
         if (filter.getCreatedOn() != null)
-            defaultSql.and(PROJECT.CREATED_ON.ge(filter.getCreatedOn()));
+            condition = condition.and(PROJECT.CREATED_ON.ge(filter.getCreatedOn()));
         if (filter.getDeadline() != null)
-            defaultSql.and(PROJECT.DEADLINE.le(filter.getDeadline()));
+            condition = condition.and(PROJECT.DEADLINE.le(filter.getDeadline()));
         if (isNotBlank(filter.getName()))
-            defaultSql.and(PROJECT.NAME.equalIgnoreCase(filter.getName()));
+            condition = condition.and(PROJECT.NAME.equalIgnoreCase(filter.getName()));
         log.info(defaultSql.getSQL());
+        var totalCount = db.selectCount().from(PROJECT).where(condition).fetchSingleInto(Long.class);
         var target = pageable.addPagination(defaultSql).fetchInto(ShortProjectResponse.class);
-        System.out.println(target);
-        return null;
+        return Page.of(target, totalCount, pageable);
     }
 }

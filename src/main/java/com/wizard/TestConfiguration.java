@@ -3,7 +3,6 @@ package com.wizard;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
-import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import lombok.Setter;
 import org.dhatim.dropwizard.jwt.cookie.authentication.JwtCookieAuthConfiguration;
 
@@ -26,10 +25,4 @@ public class TestConfiguration extends Configuration {
     @NotNull
     private JwtCookieAuthConfiguration jwtCookieAuth = new JwtCookieAuthConfiguration();
 
-    @JsonProperty("swagger")
-    public SwaggerBundleConfiguration swaggerBundleConfiguration;
-
-    public JwtCookieAuthConfiguration getJwtCookieAuth() {
-        return jwtCookieAuth;
-    }
 }

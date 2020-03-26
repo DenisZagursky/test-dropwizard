@@ -13,8 +13,6 @@ import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import io.federecio.dropwizard.swagger.SwaggerBundle;
-import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.dhatim.dropwizard.jwt.cookie.authentication.JwtCookieAuthBundle;
 import ru.vyarus.dropwizard.guice.GuiceBundle;
@@ -61,14 +59,6 @@ public class TestApplication extends Application<TestConfiguration> {
                     .build(Stage.DEVELOPMENT);
 
 
-    public static final SwaggerBundle<TestConfiguration> SWAGGER_BUNDLE = new SwaggerBundle<>() {
-        @Override
-        public SwaggerBundleConfiguration getSwaggerBundleConfiguration(
-                TestConfiguration sampleConfiguration) {
-            return sampleConfiguration.swaggerBundleConfiguration;
-        }
-    };
-
     public static GuiceBundle getGuiceBundle() {
         return GUICE_BUNDLE;
     }
@@ -85,7 +75,6 @@ public class TestApplication extends Application<TestConfiguration> {
         bootstrap.addBundle(HIBERNATE_BUNDLE);
         bootstrap.addBundle(GUICE_BUNDLE);
         bootstrap.addBundle(MIGRATIONS_BUNDLE);
-        bootstrap.addBundle(SWAGGER_BUNDLE);
     }
 
 

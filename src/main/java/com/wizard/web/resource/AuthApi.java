@@ -1,7 +1,6 @@
 package com.wizard.web.resource;
 
 import io.dropwizard.auth.Auth;
-import io.swagger.annotations.Api;
 import org.dhatim.dropwizard.jwt.cookie.authentication.DefaultJwtCookiePrincipal;
 import org.dhatim.dropwizard.jwt.cookie.authentication.DontRefreshSession;
 import org.dhatim.dropwizard.jwt.cookie.authentication.JwtCookiePrincipal;
@@ -15,8 +14,7 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-@Path("v1/auth/")
-@Api
+@Path("/api/v1/auth/")
 public class AuthApi {
 
     @POST

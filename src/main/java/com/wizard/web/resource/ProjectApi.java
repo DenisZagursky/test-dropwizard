@@ -12,7 +12,6 @@ import com.wizard.web.request.ProjectRequest;
 import com.wizard.web.response.ShortProjectResponse;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
-import io.swagger.annotations.Api;
 import org.dhatim.dropwizard.jwt.cookie.authentication.DefaultJwtCookiePrincipal;
 import org.jooq.DSLContext;
 
@@ -30,10 +29,9 @@ import javax.ws.rs.core.MediaType;
 
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
-@Path("v1/project/")
+@Path("api/v1/project/")
 @Produces(MediaType.APPLICATION_JSON)
 @PermitAll
-@Api
 public class ProjectApi {
 
 
@@ -49,7 +47,7 @@ public class ProjectApi {
 
     @GET
     @Path("/all")
-    public Page<ShortProjectResponse> getListOfProject(
+    public Page getListOfProject(
             @BeanParam ProjectFilterRequest filter,
             @BeanParam Pageable pageable,
             @Context DSLContext db) {
@@ -60,7 +58,7 @@ public class ProjectApi {
     @POST
     @Path("create")
     @UnitOfWork
-    public ShortProjectResponse createProject(ProjectRequest source,
+    public ShortProjectResponse createProject(@BeanParam ProjectRequest source,
                                               @Auth DefaultJwtCookiePrincipal principal) {
         var target = Project.create(source, principal.getName());
         projectHibernateDAO.create(target);

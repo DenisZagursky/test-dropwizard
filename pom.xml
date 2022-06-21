@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>2.0.2</dropwizard.version>
-        <mysql-connector-java-version>6.0.5</mysql-connector-java-version>
+        <mysql-connector-java-version>8.0.28</mysql-connector-java-version>
         <mainClass>com.wizard.TestApplication</mainClass>
     </properties>
 
